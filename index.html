@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DreamCatcher Financial Solutions | Private Consultation Intake</title>
+    <title>DreamCatcher Financial Solutions | Personal Protection Checkup</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -38,7 +38,7 @@
 </head>
 <body class="h-full bg-corporate-900 text-slate-100 flex flex-col justify-between selection:bg-corporate-accent selection:text-white">
 
-    <!-- Header / Authority Branding -->
+    <!-- Header / Branding -->
     <header class="w-full border-b border-slate-800 bg-corporate-900/90 backdrop-blur-md py-4 px-6 sticky top-0 z-50">
         <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
             <div>
@@ -60,16 +60,16 @@
         <!-- Step Counter & Progress Bar -->
         <div class="flex justify-between items-center mb-2">
             <span id="step-indicator" class="text-xs font-semibold uppercase tracking-wider text-corporate-accent">Step 1 of 6</span>
-            <span class="text-xs text-slate-400">Confidential Intake Protocol</span>
+            <span class="text-xs text-slate-400">Quick & Private Checkup</span>
         </div>
         <div class="w-full bg-slate-800 rounded-full h-2 mb-6 overflow-hidden border border-slate-700/50">
             <div id="progress-bar" class="bg-corporate-accent h-full transition-all duration-500 ease-out" style="width: 16.66%;"></div>
         </div>
 
-        <!-- Dynamic Micro-Copy Box -->
+        <!-- Dynamic Helpful Tip Box -->
         <div id="social-proof-banner" class="mb-6 p-3 bg-slate-800/70 border border-slate-700/60 rounded-xl text-xs sm:text-sm text-slate-300 flex items-center space-x-2.5 shadow-sm">
-            <span class="text-corporate-accent text-base">🛡️</span>
-            <span id="proof-text">Beginning secure consultation intake. All disclosures are encrypted and confidential.</span>
+            <span class="text-corporate-accent text-base">🛡️️</span>
+            <span id="proof-text">Your answers are completely private and safe. Let's find the right protection for you.</span>
         </div>
 
         <!-- Question Card Wrapper -->
@@ -110,74 +110,74 @@
         const steps = [
             {
                 id: 1,
-                title: "Select Your Current Life Horizon",
-                subtitle: "To tailor your risk profile accurately, please designate your current primary life stage.",
-                proof: "84% of clients prioritize structuring protection customized precisely to their current life stage.",
+                title: "Where are you at in life right now?",
+                subtitle: "Choose the option that best fits your current situation.",
+                proof: "Most people find it easiest to start by looking at their current life stage.",
                 type: "options",
                 key: "lifeStage",
                 options: [
-                    { label: "Young Professional (Building Foundation)", value: "young_professional", desc: "Establishing career, managing student debt or early assets." },
-                    { label: "Established Family & Homeowner", value: "established_family", desc: "Dependent children, residential mortgage, expanding household assets." },
-                    { label: "Pre-Retiree & Estate Planner", value: "pre_retiree", desc: "Peak earning years, wealth preservation, legacy transfer focus." }
+                    { label: "Young Adult / Just Starting Out", value: "young_professional", desc: "Building your career, paying off student loans, or saving up." },
+                    { label: "Growing Family & Homeowner", value: "established_family", desc: "Raising kids, paying a mortgage, and building your household." },
+                    { label: "Getting Ready for Retirement", value: "pre_retiree", desc: "Focusing on protecting your savings and planning for the future." }
                 ]
             },
             {
                 id: 2,
-                title: "Primary Financial Safeguard Priority",
-                subtitle: "What is the core objective driving this risk assessment today?",
-                proof: "Loss aversion principle: Securing income replacement prevents 92% of forced lifestyle disruptions for surviving family members.",
+                title: "What is your main goal today?",
+                subtitle: "What is the most important thing you want to protect?",
+                proof: "Having a clear goal helps make sure your family stays safe no matter what.",
                 type: "options",
                 key: "primaryObjective",
                 options: [
-                    { label: "Income Replacement & Family Standard of Living", value: "income_replacement", desc: "Ensure continuous financial flow if primary earner is lost." },
-                    { label: "Liability & Mortgage Clearance", value: "mortgage_protection", desc: "Wipe out major debts so dependents own assets outright." },
-                    { label: "Estate Liquidity & Legacy Transfer", value: "estate_legacy", desc: "Tax-efficient wealth transfer and final expense coverage." }
+                    { label: "Replacing Income for My Family", value: "income_replacement", desc: "Making sure bills and daily living costs are covered if something happens to you." },
+                    { label: "Paying Off the House and Debts", value: "mortgage_protection", desc: "Wiping out big debts so your family owns their home free and clear." },
+                    { label: "Saving for the Future & Leaving a Legacy", value: "estate_legacy", desc: "Making it easy to pass on what you've worked hard to build." }
                 ]
             },
             {
                 id: 3,
-                title: "Asset & Liability Baseline",
-                subtitle: "Select your approximate household annual income bracket.",
-                proof: "High-C Accuracy: Income baselines dictate appropriate 10x–15x coverage ratios.",
+                title: "What is your household income?",
+                subtitle: "Pick the yearly income range that fits best.",
+                proof: "Knowing your income helps figure out the right amount of coverage you need.",
                 type: "options",
                 key: "incomeRange",
                 options: [
-                    { label: "$35,000 – $65,000", value: "tier_1", desc: "Foundational income bracket & baseline asset exposure." },
-                    { label: "$65,000 – $110,000", value: "tier_2", desc: "Moderate household income & core mortgage/debt structure." },
-                    { label: "$110,000+", value: "tier_3", desc: "Upper-tier earnings, specialized estate & wealth preservation focus." }
+                    { label: "$35,000 – $65,000", value: "tier_1", desc: "Good baseline for covering everyday expenses and getting started." },
+                    { label: "$65,000 – $110,000", value: "tier_2", desc: "Great for households managing a mortgage and family costs." },
+                    { label: "$110,000+", value: "tier_3", desc: "Ideal for higher earning power and specialized long-term planning." }
                 ]
             },
             {
                 id: 4,
-                title: "Dependents & Major Liabilities",
-                subtitle: "How many financial dependents rely directly on your income?",
-                proof: "Each dependent adds specific long-term educational and living cost metrics to your risk algorithm.",
+                title: "Who relies on your income?",
+                subtitle: "How many people depend on you financially?",
+                proof: "Each person who counts on you helps us tailor the plan to fit your family size.",
                 type: "options",
                 key: "dependentsCount",
                 options: [
-                    { label: "None (Self-reliant or Partnered)", value: "0" },
-                    { label: "1 to 2 Dependents", value: "1-2" },
-                    { label: "3 or More Dependents", value: "3+" }
+                    { label: "Just me or my partner", value: "0" },
+                    { label: "1 to 2 people", value: "1-2" },
+                    { label: "3 or more people", value: "3+" }
                 ]
             },
             {
                 id: 5,
-                title: "Health Self-Assessment & Risk Profile",
-                subtitle: "How would you characterize your overall health and wellness status?",
-                proof: "Underwriting compliance: Accurate self-ratings streamline qualification for preferred tier rates.",
+                title: "How is your overall health?",
+                subtitle: "This helps us see what kind of rates you might qualify for.",
+                proof: "Being honest here helps give you a realistic picture of your options.",
                 type: "options",
                 key: "healthSelfAssessment",
                 options: [
-                    { label: "Optimal / Excellent (No chronic conditions, non-smoker)", value: "optimal" },
-                    { label: "Good / Standard (Minor managed conditions)", value: "good" },
-                    { label: "Fair / Sub-standard (Requires specialized underwriting)", value: "fair" }
+                    { label: "Great / Healthy (No major health issues, non-smoker)", value: "optimal" },
+                    { label: "Good (A few minor things that are well managed)", value: "good" },
+                    { label: "Fair (Dealing with some health concerns)", value: "fair" }
                 ]
             },
             {
                 id: 6,
-                title: "Secure Your Advisory Risk & Legacy Dossier",
-                subtitle: "Enter your contact details to unlock your confidential professional consultation briefing instantly below.",
-                proof: "Authority guarantee: Your data is held under strict fiduciary confidentiality standards.",
+                title: "Get Your Free Summary",
+                subtitle: "Type in your contact info below so Melanie can send you your custom plan summary.",
+                proof: "Your information is safe, private, and never shared with anyone else.",
                 type: "form"
             }
         ];
@@ -218,7 +218,7 @@
                     <p class="text-slate-400 text-sm sm:text-base mb-6">${stepData.subtitle}</p>
                     <form onsubmit="handleFormSubmit(event)" class="space-y-4">
                         <div>
-                            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-1">Full Name</label>
+                            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-1">Your Full Name</label>
                             <input type="text" id="clientName" required value="${state.clientName}" placeholder="John Doe" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-corporate-accent">
                         </div>
                         <div>
@@ -226,11 +226,11 @@
                             <input type="email" id="clientEmail" required value="${state.clientEmail}" placeholder="john@example.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-corporate-accent">
                         </div>
                         <div>
-                            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-1">Phone Number (For Advisor Coordination)</label>
+                            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-1">Phone Number (For Quick Follow-up)</label>
                             <input type="tel" id="clientPhone" required value="${state.clientPhone}" placeholder="(555) 000-0000" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-corporate-accent">
                         </div>
                         <button type="submit" class="w-full mt-4 bg-corporate-accent hover:bg-teal-700 text-white font-bold py-3.5 px-6 rounded-xl transition-all shadow-lg text-base">
-                            Unlock My Advisory Dossier Inline →
+                            View My Summary Now →
                         </button>
                     </form>
                 `;
@@ -260,17 +260,17 @@
 
             const card = document.getElementById('quiz-card');
             document.getElementById('social-proof-banner').style.display = 'none';
-            document.getElementById('step-indicator').innerText = 'COMPLETED BRIEFING';
+            document.getElementById('step-indicator').innerText = 'YOUR PLAN IS READY';
             document.getElementById('nav-controls').style.display = 'none';
             document.getElementById('progress-bar').style.width = '100%';
 
             let strategicInsight = "";
             if (state.lifeStage === 'young_professional') {
-                strategicInsight = "Strategic Focus: Early insurability lock-in, career income growth trajectory, and foundational debt insulation.";
+                strategicInsight = "Recommended Focus: Locking in affordable rates early, building strong savings habits, and managing debt.";
             } else if (state.lifeStage === 'established_family') {
-                strategicInsight = "Strategic Focus: Residential mortgage clearance, dependent education provisioning, and household cash flow continuity.";
+                strategicInsight = "Recommended Focus: Protecting your mortgage, ensuring kids' future needs are met, and keeping household cash flow steady.";
             } else {
-                strategicInsight = "Strategic Focus: Estate liquidity, capital preservation, and tax-efficient wealth transfer.";
+                strategicInsight = "Recommended Focus: Preserving your hard-earned savings and making sure your estate plan is smooth and simple.";
             }
 
             card.innerHTML = `
@@ -278,55 +278,55 @@
                     <div class="w-14 h-14 bg-teal-500/10 border border-teal-500/30 text-corporate-accent rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
                         ✓
                     </div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-1">Consultation Briefing Unlocked</h2>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-1">Your Protection Summary</h2>
                     <p class="text-slate-300 text-xs sm:text-sm mb-5">Prepared for <span class="text-white font-semibold">${state.clientName}</span> by Melanie Banteah (DreamCatcher Financial Solutions).</p>
                     
                     <div class="bg-slate-900/90 border border-slate-700/80 rounded-xl p-4 text-left mb-6 space-y-2.5 text-xs sm:text-sm">
                         <div class="flex justify-between border-b border-slate-800 pb-2">
-                            <span class="text-slate-400">Life Horizon Profile:</span>
+                            <span class="text-slate-400">Life Stage:</span>
                             <span class="text-white font-medium">${formatLifeStage(state.lifeStage)}</span>
                         </div>
                         <div class="flex justify-between border-b border-slate-800 pb-2">
-                            <span class="text-slate-400">Primary Safeguard Focus:</span>
+                            <span class="text-slate-400">Main Goal:</span>
                             <span class="text-white font-medium">${formatObjective(state.primaryObjective)}</span>
                         </div>
                         <div class="flex justify-between border-b border-slate-800 pb-2">
-                            <span class="text-slate-400">Income Baseline Tier:</span>
+                            <span class="text-slate-400">Income Bracket:</span>
                             <span class="text-white font-medium">${formatIncome(state.incomeRange)}</span>
                         </div>
                         <div class="flex justify-between border-b border-slate-800 pb-2">
-                            <span class="text-slate-400">Dependent Exposure Index:</span>
-                            <span class="text-white font-medium">${state.dependentsCount} Dependents</span>
+                            <span class="text-slate-400">People Relying on You:</span>
+                            <span class="text-white font-medium">${state.dependentsCount}</span>
                         </div>
                         <div class="flex justify-between border-b border-slate-800 pb-2">
-                            <span class="text-slate-400">Underwriting Readiness:</span>
-                            <span class="text-white font-medium capitalize">${state.healthSelfAssessment} Tier</span>
+                            <span class="text-slate-400">Health Category:</span>
+                            <span class="text-white font-medium capitalize">${state.healthSelfAssessment}</span>
                         </div>
                         <div class="pt-1">
-                            <span class="text-slate-400 block mb-1">Path Dossier Directive:</span>
+                            <span class="text-slate-400 block mb-1">Next Best Step:</span>
                             <span class="text-teal-300 text-xs font-medium block bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/50">${strategicInsight}</span>
                         </div>
                     </div>
 
                     <div class="bg-teal-500/10 border border-teal-500/30 rounded-xl p-4 text-xs sm:text-sm text-slate-200 mb-6">
-                        <p class="font-semibold text-white mb-1">Ready to review your strategy with Melanie?</p>
-                        <p class="text-slate-300 mb-3">Call directly at <a href="tel:5057283452" class="text-teal-400 font-bold underline">(505) 728-3452</a> or email <a href="mailto:DCFS.MelanieBanteah@Gmail.com" class="text-teal-400 underline">DCFS.MelanieBanteah@Gmail.com</a>.</p>
+                        <p class="font-semibold text-white mb-1">Want to chat with Melanie about your options?</p>
+                        <p class="text-slate-300 mb-3">Give her a call at <a href="tel:5057283452" class="text-teal-400 font-bold underline">(505) 728-3452</a> or email <a href="mailto:DCFS.MelanieBanteah@Gmail.com" class="text-teal-400 underline">DCFS.MelanieBanteah@Gmail.com</a>.</p>
                     </div>
 
-                    <button onclick="alert('Intake logged successfully. Melanie Banteah will reach out regarding your session.');" class="w-full bg-corporate-accent hover:bg-teal-700 text-white font-semibold py-3 px-4 rounded-xl transition-all text-sm shadow-lg">
-                        Confirm Submission to Melanie Banteah
+                    <button onclick="alert('Thank you! Your information has been sent to Melanie Banteah, and she will reach out soon.');" class="w-full bg-corporate-accent hover:bg-teal-700 text-white font-semibold py-3 px-4 rounded-xl transition-all text-sm shadow-lg">
+                        Submit and Send to Melanie Banteah
                     </button>
                 </div>
             `;
         }
 
         function formatLifeStage(val) {
-            const map = { young_professional: 'Young Professional', established_family: 'Established Family', pre_retiree: 'Pre-Retiree' };
+            const map = { young_professional: 'Young Adult / Starting Out', established_family: 'Growing Family', pre_retiree: 'Near Retirement' };
             return map[val] || 'Standard';
         }
         function formatObjective(val) {
-            const map = { income_replacement: 'Income Replacement', mortgage_protection: 'Mortgage Clearance', estate_legacy: 'Estate Transfer' };
-            return map[val] || 'Asset Protection';
+            const map = { income_replacement: 'Income Replacement', mortgage_protection: 'Mortgage Payoff', estate_legacy: 'Legacy & Savings' };
+            return map[val] || 'Protection';
         }
         function formatIncome(val) {
             const map = { tier_1: '$35,000 – $65,000', tier_2: '$65,000 – $110,000', tier_3: '$110,000+' };
