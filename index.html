@@ -296,7 +296,7 @@
             };
 
             // Send data payload to Make.com Webhook if configured
-            if (MAKE_WEBHOOK_URL && MAKE_WEBHOOK_URL !== 'YOUR_MAKE_WEBHOOK_URL_HERE') {
+            if (MAKE_WEBHOOK_URL && MAKE_WEBHOOK_URL !== 'https://hook.us2.make.com/ivg4t7tr0fobinlt0usutu37plk2fftu') {
                 fetch(MAKE_WEBHOOK_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
