@@ -95,7 +95,7 @@
 
     <!-- Core Logic Script -->
     <script>
-        // Formspree Endpoint URL
+        // Formspree Native Endpoint URL
         const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mdekqvkq';
 
         const state = {
@@ -219,7 +219,7 @@
                 card.innerHTML = `
                     <h2 class="text-xl sm:text-2xl font-bold text-white mb-2">${stepData.title}</h2>
                     <p class="text-slate-400 text-sm sm:text-base mb-6">${stepData.subtitle}</p>
-                    <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                    <form onsubmit="handleNativeFormSubmit(event)" class="space-y-4">
                         <div>
                             <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-1">Your Full Name</label>
                             <input type="text" id="clientName" required value="${state.clientName}" placeholder="John Doe" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-corporate-accent">
@@ -255,54 +255,67 @@
             }
         }
 
-        function handleFormSubmit(e) {
+        function handleNativeFormSubmit(e) {
             e.preventDefault();
+            
+            // Capture input text
             state.clientName = document.getElementById('clientName').value;
             state.clientEmail = document.getElementById('clientEmail').value;
             state.clientPhone = document.getElementById('clientPhone').value;
 
-            // Determine Priority Tag automatically based on inputs
+            // Build priority and recommendations
             let priorityTag = "[PRIORITY: STANDARD]";
             if (state.dependentsCount === '3+' && state.primaryObjective === 'mortgage_protection') {
                 priorityTag = "[PRIORITY: HOT LEAD 🔥]";
             }
 
-            // Map product recommendation category
             let recommendedProduct = "Standard Protection Plan";
             if (state.primaryObjective === 'mortgage_protection') recommendedProduct = "Term Life / Mortgage Protection Plan";
             else if (state.primaryObjective === 'income_replacement') recommendedProduct = "Family Income Term Policy";
             else if (state.primaryObjective === 'estate_legacy') recommendedProduct = "Wealth Preservation / Whole Life Strategy";
 
-            // PACKAGED REPORT OBJECT FOR FORMSPREE
-            const clientProfileData = {
-                timestamp: new Date().toISOString(),
+            // CREATE A NATIVE HIDDEN FORM TO SUBMIT TO FORMSPREE
+            const nativeForm = document.createElement('form');
+            nativeForm.action = FORMSPREE_ENDPOINT;
+            nativeForm.method = 'POST';
+            nativeForm.style.display = 'none';
+
+            // Append all fields to the native form
+            const formDataMap = {
+                name: state.clientName,
+                email: state.clientEmail,
+                phone: state.clientPhone,
                 agent: "Melanie Banteah",
                 company: "DreamCatcher Financial Solutions",
                 priorityTag: priorityTag,
                 recommendedProduct: recommendedProduct,
-                name: state.clientName,
-                email: state.clientEmail,
-                phone: state.clientPhone,
                 lifeStage: formatLifeStage(state.lifeStage),
                 primaryObjective: formatObjective(state.primaryObjective),
                 incomeRange: formatIncome(state.incomeRange),
                 dependentsCount: state.dependentsCount,
-                healthStatus: formatHealth(state.healthSelfAssessment),
-                crmCopyBlock: `${state.clientName} | ${state.clientPhone} | ${state.clientEmail} | ${formatObjective(state.primaryObjective)}, ${formatIncome(state.incomeRange)}`
+                healthStatus: formatHealth(state.healthSelfAssessment)
             };
 
-            // Send data payload to Formspree Endpoint
-            if (FORMSPREE_ENDPOINT) {
-                fetch(FORMSPREE_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(clientProfileData)
-                }).catch(err => console.log('Formspree transmission notice:', err));
+            for (const [key, val] of Object.entries(formDataMap)) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = val;
+                nativeForm.appendChild(input);
             }
 
+            document.body.appendChild(nativeForm);
+
+            // Render summary view on screen first, then submit form natively in background
+            showSummaryScreen();
+
+            // Submit native form after brief moment so Formspree logs the entry
+            setTimeout(() => {
+                nativeForm.submit();
+            }, 500);
+        }
+
+        function showSummaryScreen() {
             const card = document.getElementById('quiz-card');
             document.getElementById('social-proof-banner').style.display = 'none';
             document.getElementById('step-indicator').innerText = 'YOUR CHECKUP SUMMARY';
@@ -358,9 +371,7 @@
                         <p class="text-slate-300 mb-3">Give her a call at <a href="tel:5057283452" class="text-teal-400 font-bold underline">(505) 728-3452</a> or email <a href="mailto:DCFS.MelanieBanteah@Gmail.com" class="text-teal-400 underline">DCFS.MelanieBanteah@Gmail.com</a>.</p>
                     </div>
 
-                    <button onclick="alert('Thank you! Your information has been sent to Melanie Banteah, and she will reach out soon.');" class="w-full bg-corporate-accent hover:bg-teal-700 text-white font-semibold py-3 px-4 rounded-xl transition-all text-sm shadow-lg">
-                        Submit and Send to Melanie Banteah
-                    </button>
+                    <p class="text-xs text-slate-400">Your results have been successfully sent to Melanie Banteah.</p>
                 </div>
             `;
         }
