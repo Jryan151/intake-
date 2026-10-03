@@ -206,7 +206,7 @@
                             <input type="tel" id="clientPhone" required value="${state.clientPhone}" placeholder="(555) 000-0000" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-corporate-accent">
                         </div>
                         <button type="submit" class="w-full mt-4 bg-corporate-accent hover:bg-teal-700 text-white font-bold py-3.5 px-6 rounded-xl transition-all shadow-lg text-base">
-                            View My Checkup Summary Now →
+                            View My Protection Overview →
                         </button>
                     </form>
                 `;
@@ -234,12 +234,10 @@
             state.clientEmail = document.getElementById('clientEmail').value;
             state.clientPhone = document.getElementById('clientPhone').value;
 
-            // Determine lead score / temperature
+            // Determine lead score / temperature for backend CRM
             let leadTemp = "Standard Lead 🟢";
-            let badgeColor = "bg-emerald-500/10 text-emerald-400 border-emerald-500/30";
             if (state.dependentsCount === '3+' || state.primaryObjective === 'mortgage_protection') {
                 leadTemp = "Hot Lead 🔥";
-                badgeColor = "bg-amber-500/10 text-amber-400 border-amber-500/30";
             }
 
             const payload = {
@@ -255,49 +253,51 @@
                 leadTemp: leadTemp
             };
 
-            // Save locally so your custom CRM dashboard (crm.html) can display it
+            // Save locally for your CRM dashboard
             let existingLeads = JSON.parse(localStorage.getItem('dcfs_leads') || '[]');
             existingLeads.unshift(payload);
             localStorage.setItem('dcfs_leads', JSON.stringify(existingLeads));
 
-            // Render Assistant-Style Brief Overview on Screen
+            // Hide wizard progress items
             document.getElementById('progress-container').style.display = 'none';
             document.getElementById('social-proof-banner').style.display = 'none';
             document.getElementById('nav-controls').style.display = 'none';
 
-            let strategicAssistantNote = `Hi Melanie, I've prepared this brief for **${state.clientName}**. They are currently in the **${formatLifeStage(state.lifeStage).toLowerCase()}** stage with an estimated household income of **${formatIncome(state.incomeRange)}**. Their primary focus is **${formatObjective(state.primaryObjective).toLowerCase()}**, and they have **${state.dependentsCount}** dependents relying on them. Based on these inputs, this qualifies as a **${leadTemp}** opportunity.`;
-
+            // CLIENT-FACING OVERVIEW (Professional, reassuring summary for the user)
             const card = document.getElementById('quiz-card');
             card.innerHTML = `
-                <div class="space-y-4 fade-in">
-                    <div class="flex justify-between items-center border-b border-slate-700/80 pb-3">
-                        <div>
-                            <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold block">Executive Assistant Brief</span>
-                            <h2 class="text-xl font-bold text-white">${state.clientName}</h2>
-                        </div>
-                        <span class="px-3 py-1 rounded-full text-xs font-bold border ${badgeColor}">${leadTemp}</span>
+                <div class="space-y-5 fade-in text-center sm:text-left">
+                    <div class="border-b border-slate-700/80 pb-4">
+                        <span class="text-xs uppercase tracking-widest text-corporate-accent font-bold block mb-1">Protection Plan Submitted</span>
+                        <h2 class="text-2xl font-bold text-white">Thank you, ${state.clientName}!</h2>
+                        <p class="text-slate-300 text-sm mt-1">Your checkup summary has been securely routed to Melanie Banteah.</p>
                     </div>
 
-                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700/60 text-slate-300 text-sm leading-relaxed">
-                        <p>${strategicAssistantNote}</p>
+                    <div class="bg-slate-900/80 p-4 sm:p-5 rounded-2xl border border-slate-700/60 text-left space-y-3">
+                        <h3 class="text-xs uppercase tracking-wider text-slate-400 font-bold">Your Selected Preferences:</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+                                <span class="text-slate-400 text-xs block">Life Stage</span>
+                                <span class="text-white font-semibold">${formatLifeStage(state.lifeStage)}</span>
+                            </div>
+                            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+                                <span class="text-slate-400 text-xs block">Main Goal</span>
+                                <span class="text-white font-semibold">${formatObjective(state.primaryObjective)}</span>
+                            </div>
+                            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+                                <span class="text-slate-400 text-xs block">Household Income</span>
+                                <span class="text-white font-semibold">${formatIncome(state.incomeRange)}</span>
+                            </div>
+                            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+                                <span class="text-slate-400 text-xs block">Dependents</span>
+                                <span class="text-white font-semibold">${state.dependentsCount}</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-3 text-xs">
-                        <div class="bg-slate-900/50 p-3 rounded-xl border border-slate-800">
-                            <span class="text-slate-400 block mb-1">Contact Phone</span>
-                            <a href="tel:${state.clientPhone}" class="text-corporate-accent font-semibold">${state.clientPhone}</a>
-                        </div>
-                        <div class="bg-slate-900/50 p-3 rounded-xl border border-slate-800">
-                            <span class="text-slate-400 block mb-1">Contact Email</span>
-                            <a href="mailto:${state.clientEmail}" class="text-slate-300 truncate block">${state.clientEmail}</a>
-                        </div>
-                    </div>
-
-                    <div class="pt-2 flex gap-3">
-                        <a href="crm.html" target="_blank" class="block text-center w-full bg-corporate-accent hover:bg-teal-700 text-white font-medium py-3 rounded-xl text-sm transition-all shadow-lg">
-                            Open CRM Briefs Dashboard 📊
-                        </a>
-                    </div>
+                    <p class="text-xs text-slate-400 text-center leading-relaxed">
+                        Melanie will review these details and reach out to you shortly at <span class="text-white font-medium">${state.clientPhone}</span> or <span class="text-white font-medium">${state.clientEmail}</span> with your personalized options.
+                    </p>
                 </div>
             `;
         }
