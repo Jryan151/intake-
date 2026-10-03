@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DreamCatcher Financial Solutions | Personal Protection Checkup</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -16,7 +15,7 @@
                             100: '#f1f5f9',
                             800: '#1e293b',
                             900: '#0f172a',
-                            accent: '#0d9488', // Deep Teal
+                            accent: '#0d9488',
                             gold: '#d97706'
                         }
                     }
@@ -24,7 +23,6 @@
             }
         }
     </script>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
     <style>
@@ -38,15 +36,12 @@
 </head>
 <body class="h-full bg-corporate-900 text-slate-100 flex flex-col justify-between selection:bg-corporate-accent selection:text-white">
 
-    <!-- Header / Branding -->
     <header class="w-full border-b border-slate-800 bg-corporate-900/90 backdrop-blur-md py-4 px-6 sticky top-0 z-50">
         <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
             <div>
                 <span class="font-bold tracking-tight text-white block text-sm sm:text-base leading-tight">DreamCatcher Financial Solutions</span>
                 <span class="text-xs text-slate-400 font-medium">Presented by Melanie Banteah</span>
             </div>
-
-            <!-- Contact Info Header Pill -->
             <div class="flex flex-col sm:text-right text-xs bg-slate-800/80 border border-slate-700/60 px-3.5 py-1.5 rounded-xl shadow-sm">
                 <a href="mailto:DCFS.MelanieBanteah@Gmail.com" class="text-slate-300 hover:text-corporate-accent transition-colors">DCFS.MelanieBanteah@Gmail.com</a>
                 <a href="tel:5057283452" class="text-corporate-accent font-semibold mt-0.5">(505) 728-3452</a>
@@ -54,30 +49,24 @@
         </div>
     </header>
 
-    <!-- Main Quiz Container -->
     <main class="w-full max-w-2xl mx-auto px-4 py-8 sm:py-12 flex-grow flex flex-col justify-center">
-        
-        <!-- Step Counter & Progress Bar -->
-        <div class="flex justify-between items-center mb-2">
-            <span id="step-indicator" class="text-xs font-semibold uppercase tracking-wider text-corporate-accent">Step 1 of 6</span>
-            <span class="text-xs text-slate-400">Quick & Private Checkup</span>
-        </div>
-        <div class="w-full bg-slate-800 rounded-full h-2 mb-6 overflow-hidden border border-slate-700/50">
-            <div id="progress-bar" class="bg-corporate-accent h-full transition-all duration-500 ease-out" style="width: 16.66%;"></div>
+        <div id="progress-container">
+            <div class="flex justify-between items-center mb-2">
+                <span id="step-indicator" class="text-xs font-semibold uppercase tracking-wider text-corporate-accent">Step 1 of 6</span>
+                <span class="text-xs text-slate-400">Quick & Private Checkup</span>
+            </div>
+            <div class="w-full bg-slate-800 rounded-full h-2 mb-6 overflow-hidden border border-slate-700/50">
+                <div id="progress-bar" class="bg-corporate-accent h-full transition-all duration-500 ease-out" style="width: 16.66%;"></div>
+            </div>
         </div>
 
-        <!-- Dynamic Helpful Tip Box -->
         <div id="social-proof-banner" class="mb-6 p-3 bg-slate-800/70 border border-slate-700/60 rounded-xl text-xs sm:text-sm text-slate-300 flex items-center space-x-2.5 shadow-sm">
             <span class="text-corporate-accent text-base">🛡</span>
             <span id="proof-text">Your answers are completely private and safe. Let's find the right protection for you.</span>
         </div>
 
-        <!-- Question Card Wrapper -->
-        <div id="quiz-card" class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-6 sm:p-8 shadow-2xl backdrop-blur-sm fade-in">
-            <!-- Dynamically Injected Question Content -->
-        </div>
+        <div id="quiz-card" class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-6 sm:p-8 shadow-2xl backdrop-blur-sm fade-in"></div>
 
-        <!-- Navigation Controls -->
         <div id="nav-controls" class="flex justify-between items-center mt-8">
             <button id="prev-btn" onclick="prevStep()" class="hidden px-5 py-2.5 rounded-xl border border-slate-700 text-slate-300 hover:bg-slate-800 font-medium text-sm transition-all">
                 ← Back
@@ -86,18 +75,13 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="w-full border-t border-slate-800 py-4 px-6 text-center text-xs text-slate-500 flex flex-col sm:flex-row justify-center items-center gap-2">
         <span>&copy; 2026 DreamCatcher Financial Solutions. Presented by Melanie Banteah.</span>
         <span class="hidden sm:inline text-slate-700">|</span>
         <a href="tel:5057283452" class="text-slate-400 hover:text-white">(505) 728-3452</a>
     </footer>
 
-    <!-- Core Logic Script -->
     <script>
-        // Formspree Native Endpoint URL
-        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mdekqvkq';
-
         const state = {
             currentStep: 1,
             lifeStage: '',
@@ -197,21 +181,10 @@
             const card = document.getElementById('quiz-card');
             
             if (stepData.type === 'options') {
-                let html = `
-                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-2">${stepData.title}</h2>
-                    <p class="text-slate-400 text-sm sm:text-base mb-6">${stepData.subtitle}</p>
-                    <div class="space-y-3.5">
-                `;
-                
+                let html = `<h2 class="text-xl sm:text-2xl font-bold text-white mb-2">${stepData.title}</h2><p class="text-slate-400 text-sm sm:text-base mb-6">${stepData.subtitle}</p><div class="space-y-3.5">`;
                 stepData.options.forEach(opt => {
                     const isSelected = state[stepData.key] === opt.value;
-                    html += `
-                        <button onclick="handleOptionSelect('${stepData.key}', '${opt.value}')" 
-                            class="w-full text-left p-4 rounded-xl border transition-all flex flex-col justify-center ${isSelected ? 'border-corporate-accent bg-corporate-accent/10 shadow-md' : 'border-slate-700 bg-slate-900/50 hover:border-slate-600 hover:bg-slate-800'}">
-                            <span class="font-semibold text-white text-base sm:text-lg">${opt.label}</span>
-                            ${opt.desc ? `<span class="text-xs sm:text-sm text-slate-400 mt-1">${opt.desc}</span>` : ''}
-                        </button>
-                    `;
+                    html += `<button onclick="handleOptionSelect('${stepData.key}', '${opt.value}')" class="w-full text-left p-4 rounded-xl border transition-all flex flex-col justify-center ${isSelected ? 'border-corporate-accent bg-corporate-accent/10 shadow-md' : 'border-slate-700 bg-slate-900/50 hover:border-slate-600 hover:bg-slate-800'}"><span class="font-semibold text-white text-base sm:text-lg">${opt.label}</span>${opt.desc ? `<span class="text-xs sm:text-sm text-slate-400 mt-1">${opt.desc}</span>` : ''}</button>`;
                 });
                 html += `</div>`;
                 card.innerHTML = html;
@@ -219,7 +192,7 @@
                 card.innerHTML = `
                     <h2 class="text-xl sm:text-2xl font-bold text-white mb-2">${stepData.title}</h2>
                     <p class="text-slate-400 text-sm sm:text-base mb-6">${stepData.subtitle}</p>
-                    <form onsubmit="handleNativeFormSubmit(event)" class="space-y-4">
+                    <form onsubmit="handleFinalSubmit(event)" class="space-y-4">
                         <div>
                             <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-1">Your Full Name</label>
                             <input type="text" id="clientName" required value="${state.clientName}" placeholder="John Doe" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-corporate-accent">
@@ -255,123 +228,76 @@
             }
         }
 
-        function handleNativeFormSubmit(e) {
+        function handleFinalSubmit(e) {
             e.preventDefault();
-            
-            // Capture input text
             state.clientName = document.getElementById('clientName').value;
             state.clientEmail = document.getElementById('clientEmail').value;
             state.clientPhone = document.getElementById('clientPhone').value;
 
-            // Build priority and recommendations
-            let priorityTag = "[PRIORITY: STANDARD]";
-            if (state.dependentsCount === '3+' && state.primaryObjective === 'mortgage_protection') {
-                priorityTag = "[PRIORITY: HOT LEAD 🔥]";
+            // Determine lead score / temperature
+            let leadTemp = "Standard Lead 🟢";
+            let badgeColor = "bg-emerald-500/10 text-emerald-400 border-emerald-500/30";
+            if (state.dependentsCount === '3+' || state.primaryObjective === 'mortgage_protection') {
+                leadTemp = "Hot Lead 🔥";
+                badgeColor = "bg-amber-500/10 text-amber-400 border-amber-500/30";
             }
 
-            let recommendedProduct = "Standard Protection Plan";
-            if (state.primaryObjective === 'mortgage_protection') recommendedProduct = "Term Life / Mortgage Protection Plan";
-            else if (state.primaryObjective === 'income_replacement') recommendedProduct = "Family Income Term Policy";
-            else if (state.primaryObjective === 'estate_legacy') recommendedProduct = "Wealth Preservation / Whole Life Strategy";
-
-            // CREATE A NATIVE HIDDEN FORM TO SUBMIT TO FORMSPREE
-            const nativeForm = document.createElement('form');
-            nativeForm.action = FORMSPREE_ENDPOINT;
-            nativeForm.method = 'POST';
-            nativeForm.style.display = 'none';
-
-            // Append all fields to the native form
-            const formDataMap = {
+            const payload = {
+                timestamp: new Date().toLocaleString(),
                 name: state.clientName,
                 email: state.clientEmail,
                 phone: state.clientPhone,
-                agent: "Melanie Banteah",
-                company: "DreamCatcher Financial Solutions",
-                priorityTag: priorityTag,
-                recommendedProduct: recommendedProduct,
                 lifeStage: formatLifeStage(state.lifeStage),
                 primaryObjective: formatObjective(state.primaryObjective),
                 incomeRange: formatIncome(state.incomeRange),
                 dependentsCount: state.dependentsCount,
-                healthStatus: formatHealth(state.healthSelfAssessment)
+                healthStatus: formatHealth(state.healthSelfAssessment),
+                leadTemp: leadTemp
             };
 
-            for (const [key, val] of Object.entries(formDataMap)) {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = key;
-                input.value = val;
-                nativeForm.appendChild(input);
-            }
+            // Save locally so your custom CRM dashboard (crm.html) can display it
+            let existingLeads = JSON.parse(localStorage.getItem('dcfs_leads') || '[]');
+            existingLeads.unshift(payload);
+            localStorage.setItem('dcfs_leads', JSON.stringify(existingLeads));
 
-            document.body.appendChild(nativeForm);
-
-            // Render summary view on screen first, then submit form natively in background
-            showSummaryScreen();
-
-            // Submit native form after brief moment so Formspree logs the entry
-            setTimeout(() => {
-                nativeForm.submit();
-            }, 500);
-        }
-
-        function showSummaryScreen() {
-            const card = document.getElementById('quiz-card');
+            // Render Assistant-Style Brief Overview on Screen
+            document.getElementById('progress-container').style.display = 'none';
             document.getElementById('social-proof-banner').style.display = 'none';
-            document.getElementById('step-indicator').innerText = 'YOUR CHECKUP SUMMARY';
             document.getElementById('nav-controls').style.display = 'none';
-            document.getElementById('progress-bar').style.width = '100%';
 
-            let strategicInsight = "";
-            if (state.lifeStage === 'young_professional') {
-                strategicInsight = "Recommended Focus: Locking in affordable rates early, building strong savings habits, and managing debt.";
-            } else if (state.lifeStage === 'established_family') {
-                strategicInsight = "Recommended Focus: Protecting your mortgage, ensuring kids' future needs are met, and keeping household cash flow steady.";
-            } else {
-                strategicInsight = "Recommended Focus: Preserving your hard-earned savings and making sure your estate plan is smooth and simple.";
-            }
+            let strategicAssistantNote = `Hi Melanie, I've prepared this brief for **${state.clientName}**. They are currently in the **${formatLifeStage(state.lifeStage).toLowerCase()}** stage with an estimated household income of **${formatIncome(state.incomeRange)}**. Their primary focus is **${formatObjective(state.primaryObjective).toLowerCase()}**, and they have **${state.dependentsCount}** dependents relying on them. Based on these inputs, this qualifies as a **${leadTemp}** opportunity.`;
 
+            const card = document.getElementById('quiz-card');
             card.innerHTML = `
-                <div class="text-center py-2 fade-in">
-                    <div class="w-14 h-14 bg-teal-500/10 border border-teal-500/30 text-corporate-accent rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
-                        ✓
+                <div class="space-y-4 fade-in">
+                    <div class="flex justify-between items-center border-b border-slate-700/80 pb-3">
+                        <div>
+                            <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold block">Executive Assistant Brief</span>
+                            <h2 class="text-xl font-bold text-white">${state.clientName}</h2>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold border ${badgeColor}">${leadTemp}</span>
                     </div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-1">Your Checkup Summary</h2>
-                    <p class="text-slate-300 text-xs sm:text-sm mb-5">Prepared for <span class="text-white font-semibold">${state.clientName}</span> by Melanie Banteah (DreamCatcher Financial Solutions).</p>
-                    
-                    <div class="bg-slate-900/90 border border-slate-700/80 rounded-xl p-4 text-left mb-6 space-y-2.5 text-xs sm:text-sm">
-                        <div class="flex justify-between border-b border-slate-800 pb-2">
-                            <span class="text-slate-400">Life Stage:</span>
-                            <span class="text-white font-medium">${formatLifeStage(state.lifeStage)}</span>
+
+                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700/60 text-slate-300 text-sm leading-relaxed">
+                        <p>${strategicAssistantNote}</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 text-xs">
+                        <div class="bg-slate-900/50 p-3 rounded-xl border border-slate-800">
+                            <span class="text-slate-400 block mb-1">Contact Phone</span>
+                            <a href="tel:${state.clientPhone}" class="text-corporate-accent font-semibold">${state.clientPhone}</a>
                         </div>
-                        <div class="flex justify-between border-b border-slate-800 pb-2">
-                            <span class="text-slate-400">Main Goal:</span>
-                            <span class="text-white font-medium">${formatObjective(state.primaryObjective)}</span>
-                        </div>
-                        <div class="flex justify-between border-b border-slate-800 pb-2">
-                            <span class="text-slate-400">Income Bracket:</span>
-                            <span class="text-white font-medium">${formatIncome(state.incomeRange)}</span>
-                        </div>
-                        <div class="flex justify-between border-b border-slate-800 pb-2">
-                            <span class="text-slate-400">People Relying on You:</span>
-                            <span class="text-white font-medium">${state.dependentsCount}</span>
-                        </div>
-                        <div class="flex justify-between border-b border-slate-800 pb-2">
-                            <span class="text-slate-400">Health Category:</span>
-                            <span class="text-white font-medium capitalize">${formatHealth(state.healthSelfAssessment)}</span>
-                        </div>
-                        <div class="pt-1">
-                            <span class="text-slate-400 block mb-1">Next Best Step:</span>
-                            <span class="text-teal-300 text-xs font-medium block bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/50">${strategicInsight}</span>
+                        <div class="bg-slate-900/50 p-3 rounded-xl border border-slate-800">
+                            <span class="text-slate-400 block mb-1">Contact Email</span>
+                            <a href="mailto:${state.clientEmail}" class="text-slate-300 truncate block">${state.clientEmail}</a>
                         </div>
                     </div>
 
-                    <div class="bg-teal-500/10 border border-teal-500/30 rounded-xl p-4 text-xs sm:text-sm text-slate-200 mb-6">
-                        <p class="font-semibold text-white mb-1">Want to chat with Melanie about your options?</p>
-                        <p class="text-slate-300 mb-3">Give her a call at <a href="tel:5057283452" class="text-teal-400 font-bold underline">(505) 728-3452</a> or email <a href="mailto:DCFS.MelanieBanteah@Gmail.com" class="text-teal-400 underline">DCFS.MelanieBanteah@Gmail.com</a>.</p>
+                    <div class="pt-2 flex gap-3">
+                        <a href="crm.html" target="_blank" class="block text-center w-full bg-corporate-accent hover:bg-teal-700 text-white font-medium py-3 rounded-xl text-sm transition-all shadow-lg">
+                            Open CRM Briefs Dashboard 📊
+                        </a>
                     </div>
-
-                    <p class="text-xs text-slate-400">Your results have been successfully sent to Melanie Banteah.</p>
                 </div>
             `;
         }
