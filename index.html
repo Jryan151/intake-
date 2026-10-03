@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strategic Legacy & Risk Assessment | Private Consultation Intake</title>
+    <title>DreamCatcher Financial Solutions | Private Consultation Intake</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -16,7 +16,7 @@
                             100: '#f1f5f9',
                             800: '#1e293b',
                             900: '#0f172a',
-                            accent: '#0d9488', // Deep Teal for authority & trust
+                            accent: '#0d9488', // Deep Teal
                             gold: '#d97706'
                         }
                     }
@@ -39,19 +39,22 @@
 <body class="h-full bg-corporate-900 text-slate-100 flex flex-col justify-between selection:bg-corporate-accent selection:text-white">
 
     <!-- Header / Authority Branding -->
-    <header class="w-full border-b border-slate-800 bg-corporate-900/80 backdrop-blur-md py-4 px-6 sticky top-0 z-50">
-        <div class="max-w-4xl mx-auto flex justify-between items-center">
+    <header class="w-full border-b border-slate-800 bg-corporate-900/90 backdrop-blur-md py-4 px-6 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
             <div class="flex items-center space-x-3">
-                <div class="w-9 h-9 rounded-lg bg-corporate-accent flex items-center justify-center font-bold text-white text-lg shadow-sm">
-                    S
+                <div class="w-9 h-9 rounded-xl bg-corporate-accent/10 border border-corporate-accent/30 flex items-center justify-center text-corporate-accent font-bold text-base shadow-sm">
+                    DC
                 </div>
                 <div>
-                    <span class="font-bold tracking-tight text-white block text-sm sm:text-base">STRATEGIC WEALTH & LEGACY</span>
-                    <span class="text-xs text-slate-400 font-medium">Private Advisory Intake & Risk Protocol</span>
+                    <span class="font-bold tracking-tight text-white block text-sm sm:text-base leading-tight">DreamCatcher Financial Solutions</span>
+                    <span class="text-xs text-slate-400 font-medium">Presented by Melanie Banteah</span>[span_0](start_span)[span_0](end_span)
                 </div>
             </div>
-            <div id="step-indicator" class="text-xs sm:text-sm font-semibold text-corporate-accent bg-corporate-accent/10 px-3 py-1.5 rounded-full border border-corporate-accent/20">
-                Step 1 of 6
+
+            <!-- Contact Info Header Pill with Unified Quiz Font -->
+            <div class="flex flex-col sm:text-right text-xs bg-slate-800/80 border border-slate-700/60 px-3.5 py-1.5 rounded-xl shadow-sm" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                <a href="mailto:DCFS.MelanieBanteah@Gmail.com" class="text-slate-300 hover:text-corporate-accent transition-colors">DCFS.MelanieBanteah@Gmail.com</a>[span_1](start_span)[span_1](end_span)
+                <a href="tel:5057283452" class="text-corporate-accent font-semibold mt-0.5">(505) 728-3452</a>[span_2](start_span)[span_2](end_span)
             </div>
         </div>
     </header>
@@ -59,12 +62,16 @@
     <!-- Main Quiz Container -->
     <main class="w-full max-w-2xl mx-auto px-4 py-8 sm:py-12 flex-grow flex flex-col justify-center">
         
-        <!-- Progress Bar (Commitment & Consistency) -->
-        <div class="w-full bg-slate-800 rounded-full h-2 mb-8 overflow-hidden border border-slate-700/50">
+        <!-- Step Counter & Progress Bar -->
+        <div class="flex justify-between items-center mb-2">
+            <span id="step-indicator" class="text-xs font-semibold uppercase tracking-wider text-corporate-accent">Step 1 of 6</span>
+            <span class="text-xs text-slate-400">Confidential Intake Protocol</span>
+        </div>
+        <div class="w-full bg-slate-800 rounded-full h-2 mb-6 overflow-hidden border border-slate-700/50">
             <div id="progress-bar" class="bg-corporate-accent h-full transition-all duration-500 ease-out" style="width: 16.66%;"></div>
         </div>
 
-        <!-- Dynamic Micro-Copy / Social Proof Box -->
+        <!-- Dynamic Micro-Copy Box -->
         <div id="social-proof-banner" class="mb-6 p-3 bg-slate-800/70 border border-slate-700/60 rounded-xl text-xs sm:text-sm text-slate-300 flex items-center space-x-2.5 shadow-sm">
             <span class="text-corporate-accent text-base">🛡️</span>
             <span id="proof-text">Beginning secure consultation intake. All disclosures are encrypted and confidential.</span>
@@ -85,28 +92,26 @@
     </main>
 
     <!-- Footer -->
-    <footer class="w-full border-t border-slate-800 py-4 px-6 text-center text-xs text-slate-500">
-        &copy; 2026 Strategic Wealth & Legacy Advisory. High-C Compliance Protocol Active.
-    </main>
+    <footer class="w-full border-t border-slate-800 py-4 px-6 text-center text-xs text-slate-500 flex flex-col sm:flex-row justify-center items-center gap-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+        <span>&copy; 2026 DreamCatcher Financial Solutions. Presented by Melanie Banteah[span_3](start_span)[span_3](end_span).</span>
+        <span class="hidden sm:inline text-slate-700">|</span>
+        <a href="tel:5057283452" class="text-slate-400 hover:text-white">(505) 728-3452</a>[span_4](start_span)[span_4](end_span)
+    </footer>
 
     <!-- Core Logic Script -->
     <script>
-        // State Management & Data Capture Blueprint
         const state = {
             currentStep: 1,
             lifeStage: '',
             primaryObjective: '',
             incomeRange: '',
             dependentsCount: '',
-            mortgageBalance: '',
             healthSelfAssessment: '',
-            riskTolerance: '',
             clientName: '',
             clientEmail: '',
             clientPhone: ''
         };
 
-        // Quiz Step Definitions & Conditional Routing Map
         const steps = [
             {
                 id: 1,
@@ -142,9 +147,9 @@
                 type: "options",
                 key: "incomeRange",
                 options: [
-                    { label: "$75,000 – $125,000", value: "tier_1" },
-                    { label: "$125,000 – $250,000", value: "tier_2" },
-                    { label: "$250,000 – $500,000+", value: "tier_3" }
+                    { label: "$50,000 – $85,000", value: "tier_1", desc: "Foundational income bracket & baseline asset exposure." },
+                    { label: "$85,000 – $135,000", value: "tier_2", desc: "Moderate household income & core mortgage/debt structure." },
+                    { label: "$135,000+", value: "tier_3", desc: "Upper-tier earnings, specialized estate & wealth preservation focus." }
                 ]
             },
             {
@@ -175,8 +180,8 @@
             },
             {
                 id: 6,
-                title: "Secure Your Bespoke Risk & Legacy Blueprint",
-                subtitle: "Enter your contact details to generate your encrypted advisory report.",
+                title: "Secure Your Advisory Risk & Legacy Dossier",
+                subtitle: "Enter your contact details to unlock your confidential professional consultation briefing instantly below.",
                 proof: "Authority guarantee: Your data is held under strict fiduciary confidentiality standards.",
                 type: "form"
             }
@@ -186,7 +191,6 @@
             const stepData = steps.find(s => s.id === state.currentStep);
             const progressPercent = (state.currentStep / steps.length) * 100;
             
-            // Update UI elements
             document.getElementById('progress-bar').style.width = `${progressPercent}%`;
             document.getElementById('step-indicator').innerText = `Step ${state.currentStep} of ${steps.length}`;
             document.getElementById('proof-text').innerText = stepData.proof;
@@ -227,11 +231,11 @@
                             <input type="email" id="clientEmail" required value="${state.clientEmail}" placeholder="john@example.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-corporate-accent">
                         </div>
                         <div>
-                            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-1">Phone Number (For Secure Blueprint Delivery)</label>
+                            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-1">Phone Number (For Advisor Coordination)</label>
                             <input type="tel" id="clientPhone" required value="${state.clientPhone}" placeholder="(555) 000-0000" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-corporate-accent">
                         </div>
                         <button type="submit" class="w-full mt-4 bg-corporate-accent hover:bg-teal-700 text-white font-bold py-3.5 px-6 rounded-xl transition-all shadow-lg text-base">
-                            Generate My Lifestyle Risk & Legacy Blueprint →
+                            Unlock My Advisory Dossier Inline →
                         </button>
                     </form>
                 `;
@@ -259,48 +263,64 @@
             state.clientEmail = document.getElementById('clientEmail').value;
             state.clientPhone = document.getElementById('clientPhone').value;
 
-            // Render Completion Reward Screen (Lifestyle Risk & Legacy Blueprint)
             const card = document.getElementById('quiz-card');
             document.getElementById('social-proof-banner').style.display = 'none';
-            document.getElementById('step-indicator').innerText = 'Completed';
+            document.getElementById('step-indicator').innerText = 'COMPLETED BRIEFING';
             document.getElementById('nav-controls').style.display = 'none';
             document.getElementById('progress-bar').style.width = '100%';
 
+            let strategicInsight = "";
+            if (state.lifeStage === 'young_professional') {
+                strategicInsight = "Strategic Focus: Early insurability lock-in, career income growth trajectory, and foundational debt insulation.";
+            } else if (state.lifeStage === 'established_family') {
+                strategicInsight = "Strategic Focus: Residential mortgage clearance, dependent education provisioning, and household cash flow continuity.";
+            } else {
+                strategicInsight = "Strategic Focus: Estate liquidity, capital preservation, and tax-efficient wealth transfer.";
+            }
+
             card.innerHTML = `
-                <div class="text-center py-4 fade-in">
-                    <div class="w-16 h-16 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                <div class="text-center py-2 fade-in">
+                    <div class="w-14 h-14 bg-teal-500/10 border border-teal-500/30 text-corporate-accent rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
                         ✓
                     </div>
-                    <h2 class="text-2xl font-bold text-white mb-2">Blueprint Generated Successfully</h2>
-                    <p class="text-slate-300 text-sm mb-6">Prepared exclusively for <span class="text-white font-semibold">${state.clientName}</span> based on your <span class="text-corporate-accent font-semibold">${formatLifeStage(state.lifeStage)}</span> profile.</p>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-1">Consultation Briefing Unlocked</h2>
+                    <p class="text-slate-300 text-xs sm:text-sm mb-5">Prepared for <span class="text-white font-semibold">${state.clientName}</span> by Melanie Banteah (DreamCatcher Financial Solutions)[span_5](start_span)[span_5](end_span).</p>
                     
-                    <div class="bg-slate-900/80 border border-slate-700/80 rounded-xl p-5 text-left mb-6 space-y-3">
-                        <div class="flex justify-between text-sm border-b border-slate-800 pb-2">
-                            <span class="text-slate-400">Primary Objective:</span>
+                    <div class="bg-slate-900/90 border border-slate-700/80 rounded-xl p-4 text-left mb-6 space-y-2.5 text-xs sm:text-sm">
+                        <div class="flex justify-between border-b border-slate-800 pb-2">
+                            <span class="text-slate-400">Life Horizon Profile:</span>
+                            <span class="text-white font-medium">${formatLifeStage(state.lifeStage)}</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-800 pb-2">
+                            <span class="text-slate-400">Primary Safeguard Focus:</span>
                             <span class="text-white font-medium">${formatObjective(state.primaryObjective)}</span>
                         </div>
-                        <div class="flex justify-between text-sm border-b border-slate-800 pb-2">
-                            <span class="text-slate-400">Income Protection Tier:</span>
-                            <span class="text-white font-medium">${state.incomeRange.toUpperCase()}</span>
+                        <div class="flex justify-between border-b border-slate-800 pb-2">
+                            <span class="text-slate-400">Income Baseline Tier:</span>
+                            <span class="text-white font-medium">${formatIncome(state.incomeRange)}</span>
                         </div>
-                        <div class="flex justify-between text-sm border-b border-slate-800 pb-2">
-                            <span class="text-slate-400">Underwriting Health Bracket:</span>
-                            <span class="text-white font-medium capitalize">${state.healthSelfAssessment}</span>
+                        <div class="flex justify-between border-b border-slate-800 pb-2">
+                            <span class="text-slate-400">Dependent Exposure Index:</span>
+                            <span class="text-white font-medium">${state.dependentsCount} Dependents</span>
                         </div>
-                        <div class="flex justify-between text-sm">
-                            <span class="text-slate-400">Assigned Strategic Dossier:</span>
-                            <span class="text-emerald-400 font-mono">SECURE-2026-X9</span>
+                        <div class="flex justify-between border-b border-slate-800 pb-2">
+                            <span class="text-slate-400">Underwriting Readiness:</span>
+                            <span class="text-white font-medium capitalize">${state.healthSelfAssessment} Tier</span>
+                        </div>
+                        <div class="pt-1">
+                            <span class="text-slate-400 block mb-1">Path Dossier Directive:</span>
+                            <span class="text-teal-300 text-xs font-medium block bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/50">${strategicInsight}</span>
                         </div>
                     </div>
 
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <button onclick="alert('Downloading Lifestyle Risk & Legacy Blueprint PDF...')" class="flex-1 bg-corporate-accent hover:bg-teal-700 text-white font-semibold py-3 px-4 rounded-xl transition-all text-sm">
-                            Download Complete Blueprint PDF
-                        </button>
-                        <button onclick="console.log('JSON Payload:', JSON.stringify(state, null, 2)); alert('Data logged to agent CRM payload.');" class="flex-1 bg-slate-800 border border-slate-700 hover:bg-slate-700 text-slate-200 font-semibold py-3 px-4 rounded-xl transition-all text-sm">
-                            Export CRM JSON Payload
-                        </button>
+                    <div class="bg-teal-500/10 border border-teal-500/30 rounded-xl p-4 text-xs sm:text-sm text-slate-200 mb-6" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                        <p class="font-semibold text-white mb-1">Ready to review your strategy with Melanie?</p>
+                        <p class="text-slate-300 mb-3">Call directly at <a href="tel:5057283452" class="text-teal-400 font-bold underline">(505) 728-3452</a> or email <a href="mailto:DCFS.MelanieBanteah@Gmail.com" class="text-teal-400 underline">DCFS.MelanieBanteah@Gmail.com</a>[span_6](start_span)[span_6](end_span).</p>
                     </div>
+
+                    <button onclick="alert('Intake logged successfully. Melanie Banteah will reach out regarding your session.');" class="w-full bg-corporate-accent hover:bg-teal-700 text-white font-semibold py-3 px-4 rounded-xl transition-all text-sm shadow-lg">
+                        Confirm Submission to Melanie Banteah[span_7](start_span)[span_7](end_span)
+                    </button>
                 </div>
             `;
         }
@@ -313,8 +333,11 @@
             const map = { income_replacement: 'Income Replacement', mortgage_protection: 'Mortgage Clearance', estate_legacy: 'Estate Transfer' };
             return map[val] || 'Asset Protection';
         }
+        function formatIncome(val) {
+            const map = { tier_1: '$50,000 – $85,000', tier_2: '$85,000 – $135,000', tier_3: '$135,000+' };
+            return map[val] || 'Standard';
+        }
 
-        // Initialize
         renderStep();
     </script>
 </body>
