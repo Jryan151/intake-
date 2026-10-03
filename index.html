@@ -234,10 +234,22 @@
             state.clientEmail = document.getElementById('clientEmail').value;
             state.clientPhone = document.getElementById('clientPhone').value;
 
-            // Determine lead score / temperature for backend CRM
+            // Intelligent 3-Tier Lead Score with Explanations
             let leadTemp = "Standard Lead 🟢";
-            if (state.dependentsCount === '3+' || state.primaryObjective === 'mortgage_protection') {
+            let leadReason = "Standard profile with lower immediate dependency or starting-out objectives.";
+
+            if (state.dependentsCount === '3+' && state.primaryObjective === 'mortgage_protection') {
                 leadTemp = "Hot Lead 🔥";
+                leadReason = "Flagged Hot because they have 3+ dependents and a mortgage protection focus.";
+            } else if (state.dependentsCount === '3+') {
+                leadTemp = "Hot Lead 🔥";
+                leadReason = "Flagged Hot due to having 3 or more dependents relying on their income.";
+            } else if (state.primaryObjective === 'mortgage_protection') {
+                leadTemp = "Hot Lead 🔥";
+                leadReason = "Flagged Hot because their primary goal is mortgage payoff and debt elimination.";
+            } else if (state.dependentsCount === '1-2' || state.incomeRange === 'tier_2' || state.incomeRange === 'tier_3') {
+                leadTemp = "Warm Lead 🟡";
+                leadReason = "Flagged Warm due to active household dependents or mid-to-high income tiers.";
             }
 
             const payload = {
@@ -250,7 +262,8 @@
                 incomeRange: formatIncome(state.incomeRange),
                 dependentsCount: state.dependentsCount,
                 healthStatus: formatHealth(state.healthSelfAssessment),
-                leadTemp: leadTemp
+                leadTemp: leadTemp,
+                leadReason: leadReason
             };
 
             // Save locally for your CRM dashboard
@@ -263,7 +276,7 @@
             document.getElementById('social-proof-banner').style.display = 'none';
             document.getElementById('nav-controls').style.display = 'none';
 
-            // CLIENT-FACING OVERVIEW (Professional, reassuring summary for the user)
+            // CLIENT-FACING OVERVIEW
             const card = document.getElementById('quiz-card');
             card.innerHTML = `
                 <div class="space-y-5 fade-in text-center sm:text-left">
@@ -323,3 +336,4 @@
     </script>
 </body>
 </html>
+ 
