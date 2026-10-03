@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Legacy & Risk Assessment | Private Consultation Intake</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        corporate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            accent: '#0d9488', // Deep Teal for authority & trust
+                            gold: '#d97706'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .fade-in { animation: fadeIn 0.3s ease-in-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="h-full bg-corporate-900 text-slate-100 flex flex-col justify-between selection:bg-corporate-accent selection:text-white">
+
+    <!-- Header / Authority Branding -->
+    <header class="w-full border-b border-slate-800 bg-corporate-900/80 backdrop-blur-md py-4 px-6 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-lg bg-corporate-accent flex items-center justify-center font-bold text-white text-lg shadow-sm">
+                    S
+                </div>
+                <div>
+                    <span class="font-bold tracking-tight text-white block text-sm sm:text-base">STRATEGIC WEALTH & LEGACY</span>
+                    <span class="text-xs text-slate-400 font-medium">Private Advisory Intake & Risk Protocol</span>
+                </div>
+            </div>
+            <div id="step-indicator" class="text-xs sm:text-sm font-semibold text-corporate-accent bg-corporate-accent/10 px-3 py-1.5 rounded-full border border-corporate-accent/20">
+                Step 1 of 6
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Quiz Container -->
+    <main class="w-full max-w-2xl mx-auto px-4 py-8 sm:py-12 flex-grow flex flex-col justify-center">
+        
+        <!-- Progress Bar (Commitment & Consistency) -->
+        <div class="w-full bg-slate-800 rounded-full h-2 mb-8 overflow-hidden border border-slate-700/50">
+            <div id="progress-bar" class="bg-corporate-accent h-full transition-all duration-500 ease-out" style="width: 16.66%;"></div>
+        </div>
+
+        <!-- Dynamic Micro-Copy / Social Proof Box -->
+        <div id="social-proof-banner" class="mb-6 p-3 bg-slate-800/70 border border-slate-700/60 rounded-xl text-xs sm:text-sm text-slate-300 flex items-center space-x-2.5 shadow-sm">
+            <span class="text-corporate-accent text-base">🛡️</span>
+            <span id="proof-text">Beginning secure consultation intake. All disclosures are encrypted and confidential.</span>
+        </div>
+
+        <!-- Question Card Wrapper -->
+        <div id="quiz-card" class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-6 sm:p-8 shadow-2xl backdrop-blur-sm fade-in">
+            <!-- Dynamically Injected Question Content -->
+        </div>
+
+        <!-- Navigation Controls -->
+        <div id="nav-controls" class="flex justify-between items-center mt-8">
+            <button id="prev-btn" onclick="prevStep()" class="hidden px-5 py-2.5 rounded-xl border border-slate-700 text-slate-300 hover:bg-slate-800 font-medium text-sm transition-all">
+                ← Back
+            </button>
+            <div class="ml-auto"></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full border-t border-slate-800 py-4 px-6 text-center text-xs text-slate-500">
+        &copy; 2026 Strategic Wealth & Legacy Advisory. High-C Compliance Protocol Active.
+    </main>
+
+    <!-- Core Logic Script -->
+    <script>
+        // State Management & Data Capture Blueprint
+        const state = {
+            currentStep: 1,
+            lifeStage: '',
+            primaryObjective: '',
+            incomeRange: '',
+            dependentsCount: '',
+            mortgageBalance: '',
+            healthSelfAssessment: '',
+            riskTolerance: '',
+            clientName: '',
+            clientEmail: '',
+            clientPhone: ''
+        };
+
+        // Quiz Step Definitions & Conditional Routing Map
+        const steps = [
+            {
+                id: 1,
+                title: "Select Your Current Life Horizon",
+                subtitle: "To tailor your risk profile accurately, please designate your current primary life stage.",
+                proof: "84% of clients prioritize structuring protection customized precisely to their current life stage.",
+                type: "options",
+                key: "lifeStage",
+                options: [
+                    { label: "Young Professional (Building Foundation)", value: "young_professional", desc: "Establishing career, managing student debt or early assets." },
+                    { label: "Established Family & Homeowner", value: "established_family", desc: "Dependent children, residential mortgage, expanding household assets." },
+                    { label: "Pre-Retiree & Estate Planner", value: "pre_retiree", desc: "Peak earning years, wealth preservation, legacy transfer focus." }
+                ]
+            },
+            {
+                id: 2,
+                title: "Primary Financial Safeguard Priority",
+                subtitle: "What is the core objective driving this risk assessment today?",
+                proof: "Loss aversion principle: Securing income replacement prevents 92% of forced lifestyle disruptions for surviving family members.",
+                type: "options",
+                key: "primaryObjective",
+                options: [
+                    { label: "Income Replacement & Family Standard of Living", value: "income_replacement", desc: "Ensure continuous financial flow if primary earner is lost." },
+                    { label: "Liability & Mortgage Clearance", value: "mortgage_protection", desc: "Wipe out major debts so dependents own assets outright." },
+                    { label: "Estate Liquidity & Legacy Transfer", value: "estate_legacy", desc: "Tax-efficient wealth transfer and final expense coverage." }
+                ]
+            },
+            {
+                id: 3,
+                title: "Asset & Liability Baseline",
+                subtitle: "Select your approximate household annual income bracket.",
+                proof: "High-C Accuracy: Income baselines dictate appropriate 10x–15x coverage ratios.",
+                type: "options",
+                key: "incomeRange",
+                options: [
+                    { label: "$75,000 – $125,000", value: "tier_1" },
+                    { label: "$125,000 – $250,000", value: "tier_2" },
+                    { label: "$250,000 – $500,000+", value: "tier_3" }
+                ]
+            },
+            {
+                id: 4,
+                title: "Dependents & Major Liabilities",
+                subtitle: "How many financial dependents rely directly on your income?",
+                proof: "Each dependent adds specific long-term educational and living cost metrics to your risk algorithm.",
+                type: "options",
+                key: "dependentsCount",
+                options: [
+                    { label: "None (Self-reliant or Partnered)", value: "0" },
+                    { label: "1 to 2 Dependents", value: "1-2" },
+                    { label: "3 or More Dependents", value: "3+" }
+                ]
+            },
+            {
+                id: 5,
+                title: "Health Self-Assessment & Risk Profile",
+                subtitle: "How would you characterize your overall health and wellness status?",
+                proof: "Underwriting compliance: Accurate self-ratings streamline qualification for preferred tier rates.",
+                type: "options",
+                key: "healthSelfAssessment",
+                options: [
+                    { label: "Optimal / Excellent (No chronic conditions, non-smoker)", value: "optimal" },
+                    { label: "Good / Standard (Minor managed conditions)", value: "good" },
+                    { label: "Fair / Sub-standard (Requires specialized underwriting)", value: "fair" }
+                ]
+            },
+            {
+                id: 6,
+                title: "Secure Your Bespoke Risk & Legacy Blueprint",
+                subtitle: "Enter your contact details to generate your encrypted advisory report.",
+                proof: "Authority guarantee: Your data is held under strict fiduciary confidentiality standards.",
+                type: "form"
+            }
+        ];
+
+        function renderStep() {
+            const stepData = steps.find(s => s.id === state.currentStep);
+            const progressPercent = (state.currentStep / steps.length) * 100;
+            
+            // Update UI elements
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('step-indicator').innerText = `Step ${state.currentStep} of ${steps.length}`;
+            document.getElementById('proof-text').innerText = stepData.proof;
+            document.getElementById('prev-btn').classList.toggle('hidden', state.currentStep === 1);
+
+            const card = document.getElementById('quiz-card');
+            
+            if (stepData.type === 'options') {
+                let html = `
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-2">${stepData.title}</h2>
+                    <p class="text-slate-400 text-sm sm:text-base mb-6">${stepData.subtitle}</p>
+                    <div class="space-y-3.5">
+                `;
+                
+                stepData.options.forEach(opt => {
+                    const isSelected = state[stepData.key] === opt.value;
+                    html += `
+                        <button onclick="handleOptionSelect('${stepData.key}', '${opt.value}')" 
+                            class="w-full text-left p-4 rounded-xl border transition-all flex flex-col justify-center ${isSelected ? 'border-corporate-accent bg-corporate-accent/10 shadow-md' : 'border-slate-700 bg-slate-900/50 hover:border-slate-600 hover:bg-slate-800'}">
+                            <span class="font-semibold text-white text-base sm:text-lg">${opt.label}</span>
+                            ${opt.desc ? `<span class="text-xs sm:text-sm text-slate-400 mt-1">${opt.desc}</span>` : ''}
+                        </button>
+                    `;
+                });
+                html += `</div>`;
+                card.innerHTML = html;
+            } else if (stepData.type === 'form') {
+                card.innerHTML = `
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mb-2">${stepData.title}</h2>
+                    <p class="text-slate-400 text-sm sm:text-base mb-6">${stepData.subtitle}</p>
+                    <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-1">Full Name</label>
+                            <input type="text" id="clientName" required value="${state.clientName}" placeholder="John Doe" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-corporate-accent">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-1">Email Address</label>
+                            <input type="email" id="clientEmail" required value="${state.clientEmail}" placeholder="john@example.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-corporate-accent">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-1">Phone Number (For Secure Blueprint Delivery)</label>
+                            <input type="tel" id="clientPhone" required value="${state.clientPhone}" placeholder="(555) 000-0000" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-corporate-accent">
+                        </div>
+                        <button type="submit" class="w-full mt-4 bg-corporate-accent hover:bg-teal-700 text-white font-bold py-3.5 px-6 rounded-xl transition-all shadow-lg text-base">
+                            Generate My Lifestyle Risk & Legacy Blueprint →
+                        </button>
+                    </form>
+                `;
+            }
+        }
+
+        function handleOptionSelect(key, value) {
+            state[key] = value;
+            if (state.currentStep < steps.length) {
+                state.currentStep++;
+                renderStep();
+            }
+        }
+
+        function prevStep() {
+            if (state.currentStep > 1) {
+                state.currentStep--;
+                renderStep();
+            }
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            state.clientName = document.getElementById('clientName').value;
+            state.clientEmail = document.getElementById('clientEmail').value;
+            state.clientPhone = document.getElementById('clientPhone').value;
+
+            // Render Completion Reward Screen (Lifestyle Risk & Legacy Blueprint)
+            const card = document.getElementById('quiz-card');
+            document.getElementById('social-proof-banner').style.display = 'none';
+            document.getElementById('step-indicator').innerText = 'Completed';
+            document.getElementById('nav-controls').style.display = 'none';
+            document.getElementById('progress-bar').style.width = '100%';
+
+            card.innerHTML = `
+                <div class="text-center py-4 fade-in">
+                    <div class="w-16 h-16 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        ✓
+                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Blueprint Generated Successfully</h2>
+                    <p class="text-slate-300 text-sm mb-6">Prepared exclusively for <span class="text-white font-semibold">${state.clientName}</span> based on your <span class="text-corporate-accent font-semibold">${formatLifeStage(state.lifeStage)}</span> profile.</p>
+                    
+                    <div class="bg-slate-900/80 border border-slate-700/80 rounded-xl p-5 text-left mb-6 space-y-3">
+                        <div class="flex justify-between text-sm border-b border-slate-800 pb-2">
+                            <span class="text-slate-400">Primary Objective:</span>
+                            <span class="text-white font-medium">${formatObjective(state.primaryObjective)}</span>
+                        </div>
+                        <div class="flex justify-between text-sm border-b border-slate-800 pb-2">
+                            <span class="text-slate-400">Income Protection Tier:</span>
+                            <span class="text-white font-medium">${state.incomeRange.toUpperCase()}</span>
+                        </div>
+                        <div class="flex justify-between text-sm border-b border-slate-800 pb-2">
+                            <span class="text-slate-400">Underwriting Health Bracket:</span>
+                            <span class="text-white font-medium capitalize">${state.healthSelfAssessment}</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-400">Assigned Strategic Dossier:</span>
+                            <span class="text-emerald-400 font-mono">SECURE-2026-X9</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button onclick="alert('Downloading Lifestyle Risk & Legacy Blueprint PDF...')" class="flex-1 bg-corporate-accent hover:bg-teal-700 text-white font-semibold py-3 px-4 rounded-xl transition-all text-sm">
+                            Download Complete Blueprint PDF
+                        </button>
+                        <button onclick="console.log('JSON Payload:', JSON.stringify(state, null, 2)); alert('Data logged to agent CRM payload.');" class="flex-1 bg-slate-800 border border-slate-700 hover:bg-slate-700 text-slate-200 font-semibold py-3 px-4 rounded-xl transition-all text-sm">
+                            Export CRM JSON Payload
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function formatLifeStage(val) {
+            const map = { young_professional: 'Young Professional', established_family: 'Established Family', pre_retiree: 'Pre-Retiree' };
+            return map[val] || 'Standard';
+        }
+        function formatObjective(val) {
+            const map = { income_replacement: 'Income Replacement', mortgage_protection: 'Mortgage Clearance', estate_legacy: 'Estate Transfer' };
+            return map[val] || 'Asset Protection';
+        }
+
+        // Initialize
+        renderStep();
+    </script>
+</body>
+</html>
