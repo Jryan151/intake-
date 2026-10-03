@@ -95,6 +95,9 @@
 
     <!-- Core Logic Script -->
     <script>
+        // 🔗 PASTE YOUR MAKE.COM WEBHOOK URL INSIDE THE QUOTES BELOW WHEN READY:
+        const MAKE_WEBHOOK_URL = 'YOUR_MAKE_WEBHOOK_URL_HERE';
+
         const state = {
             currentStep: 1,
             lifeStage: '',
@@ -258,34 +261,48 @@
             state.clientEmail = document.getElementById('clientEmail').value;
             state.clientPhone = document.getElementById('clientPhone').value;
 
-            // PACKAGED REPORT OBJECT FOR SECONDARY SCRIPT
+            // Determine Priority Tag automatically based on inputs
+            let priorityTag = "[PRIORITY: STANDARD]";
+            if (state.dependentsCount === '3+' && state.primaryObjective === 'mortgage_protection') {
+                priorityTag = "[PRIORITY: HOT LEAD 🔥]";
+            }
+
+            // Map product recommendation category
+            let recommendedProduct = "Standard Protection Plan";
+            if (state.primaryObjective === 'mortgage_protection') recommendedProduct = "Term Life / Mortgage Protection Plan";
+            else if (state.primaryObjective === 'income_replacement') recommendedProduct = "Family Income Term Policy";
+            else if (state.primaryObjective === 'estate_legacy') recommendedProduct = "Wealth Preservation / Whole Life Strategy";
+
+            // PACKAGED REPORT OBJECT FOR MAKE.COM / AUTOMATION
             const clientProfileData = {
                 timestamp: new Date().toISOString(),
                 agent: "Melanie Banteah",
                 company: "DreamCatcher Financial Solutions",
+                priorityTag: priorityTag,
+                recommendedProduct: recommendedProduct,
                 client: {
                     name: state.clientName,
                     email: state.clientEmail,
                     phone: state.clientPhone
                 },
                 profile: {
-                    lifeStage: state.lifeStage,
-                    primaryObjective: state.primaryObjective,
-                    incomeRange: state.incomeRange,
+                    lifeStage: formatLifeStage(state.lifeStage),
+                    primaryObjective: formatObjective(state.primaryObjective),
+                    incomeRange: formatIncome(state.incomeRange),
                     dependentsCount: state.dependentsCount,
-                    healthStatus: state.healthSelfAssessment
+                    healthStatus: formatHealth(state.healthSelfAssessment)
                 },
-                summaryText: `New checkup profile received from ${state.clientName} (${state.clientEmail}, ${state.clientPhone}). Life Stage: ${state.lifeStage}, Objective: ${state.primaryObjective}, Income Tier: ${state.incomeRange}, Dependents: ${state.dependentsCount}, Health: ${state.healthSelfAssessment}.`
+                crmCopyBlock: `${state.clientName} | ${state.clientPhone} | ${state.clientEmail} | ${formatObjective(state.primaryObjective)}, ${formatIncome(state.incomeRange)}`
             };
 
-            // 👉 Hook your secondary script or endpoint here:
-            // fetch('https://your-secondary-script-endpoint.com/api', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(clientProfileData)
-            // });
-
-            console.log("Agent Profile Report Ready for Secondary Script:", clientProfileData);
+            // Send data payload to Make.com Webhook if configured
+            if (MAKE_WEBHOOK_URL && MAKE_WEBHOOK_URL !== 'YOUR_MAKE_WEBHOOK_URL_HERE') {
+                fetch(MAKE_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(clientProfileData)
+                }).catch(err => console.log('Webhook transmission notice:', err));
+            }
 
             const card = document.getElementById('quiz-card');
             document.getElementById('social-proof-banner').style.display = 'none';
