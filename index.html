@@ -230,19 +230,15 @@
 
         function handleFinalSubmit(e) {
             e.preventDefault();
-            state.clientName = document.getElementById('clientName').value;
+            state.clientName = document.getElementById('clientName',).value;
             state.clientEmail = document.getElementById('clientEmail').value;
             state.clientPhone = document.getElementById('clientPhone').value;
 
             // PRECISE LEAD SCORING LOGIC
             let leadTemp = "Standard Lead 🟢";
-            
-            // HOT LEAD: Requires high vulnerability (3+ dependents OR mortgage goal paired with mid/high income tiers)
             if (state.dependentsCount === '3+' || (state.primaryObjective === 'mortgage_protection' && (state.incomeRange === 'tier_2' || state.incomeRange === 'tier_3'))) {
                 leadTemp = "Hot Lead 🔥";
-            } 
-            // WARM LEAD: 1-2 dependents, or single mortgage focus on entry tier, or mid/high income
-            else if (state.dependentsCount === '1-2' || state.primaryObjective === 'mortgage_protection' || state.incomeRange === 'tier_2' || state.incomeRange === 'tier_3') {
+            } else if (state.dependentsCount === '1-2' || state.primaryObjective === 'mortgage_protection' || state.incomeRange === 'tier_2' || state.incomeRange === 'tier_3') {
                 leadTemp = "Warm Lead 🟡";
             }
 
@@ -282,7 +278,17 @@
             document.getElementById('social-proof-banner').style.display = 'none';
             document.getElementById('nav-controls').style.display = 'none';
 
-            // CLIENT-FACING OVERVIEW WITH SUGGESTIVE FOCUS BRIEF RETURNED
+            // DYNAMIC PROACTIVE ADVICE GENERATOR (Replaces "Melanie recommends")
+            let proactiveAdvice = "";
+            if (state.primaryObjective === 'mortgage_protection') {
+                proactiveAdvice = "A helpful proactive step for mortgage and debt focus is to list out your remaining loan balances and monthly housing commitments so you have them organized in one spot before your review.";
+            } else if (state.primaryObjective === 'income_replacement') {
+                proactiveAdvice = "A great way to prepare for income replacement discussions is to tally up essential monthly household expenses (utilities, groceries, transport) to get a clear baseline number.";
+            } else {
+                proactiveAdvice = "A productive next step is gathering your current financial milestone goals and any existing savings or policy paperwork to streamline your future planning sessions.";
+            }
+
+            // CLIENT-FACING OVERVIEW WITH PROACTIVE ADVICE
             const card = document.getElementById('quiz-card');
             card.innerHTML = `
                 <div class="space-y-5 fade-in text-center sm:text-left">
@@ -293,9 +299,9 @@
                     </div>
 
                     <div class="bg-slate-900/80 p-4 sm:p-5 rounded-2xl border border-slate-700/60 text-left space-y-3">
-                        <h3 class="text-xs uppercase tracking-wider text-slate-400 font-bold">Your Custom Focus Brief:</h3>
+                        <h3 class="text-xs uppercase tracking-wider text-slate-400 font-bold">Proactive Checklist & Next Steps:</h3>
                         <p class="text-sm text-slate-300 leading-relaxed bg-slate-950/60 p-3.5 rounded-xl border border-slate-800">
-                            Based on your profile in the <strong>${lifeStageText.toLowerCase()}</strong> stage with <strong>${state.dependentsCount}</strong> dependent(s) and a focus on <strong>${objectiveText.toLowerCase()}</strong>, Melanie recommends evaluating tailored structures that match your household income tier of <strong>${incomeText}</strong>.
+                            ${proactiveAdvice}
                         </p>
                     </div>
 
