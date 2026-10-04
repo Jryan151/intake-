@@ -234,15 +234,18 @@
             state.clientEmail = document.getElementById('clientEmail').value;
             state.clientPhone = document.getElementById('clientPhone').value;
 
-            // 1. Determine Lead Temperature Score
+            // PRECISE LEAD SCORING LOGIC
             let leadTemp = "Standard Lead 🟢";
-            if (state.dependentsCount === '3+' || state.primaryObjective === 'mortgage_protection') {
+            
+            // HOT LEAD: Requires high vulnerability (3+ dependents OR mortgage goal paired with mid/high income tiers)
+            if (state.dependentsCount === '3+' || (state.primaryObjective === 'mortgage_protection' && (state.incomeRange === 'tier_2' || state.incomeRange === 'tier_3'))) {
                 leadTemp = "Hot Lead 🔥";
-            } else if (state.dependentsCount === '1-2' || state.incomeRange === 'tier_2' || state.incomeRange === 'tier_3') {
+            } 
+            // WARM LEAD: 1-2 dependents, or single mortgage focus on entry tier, or mid/high income
+            else if (state.dependentsCount === '1-2' || state.primaryObjective === 'mortgage_protection' || state.incomeRange === 'tier_2' || state.incomeRange === 'tier_3') {
                 leadTemp = "Warm Lead 🟡";
             }
 
-            // 2. Generate a Unique, Situation-Specific Elaboration Breakdown
             const lifeStageText = formatLifeStage(state.lifeStage);
             const objectiveText = formatObjective(state.primaryObjective);
             const incomeText = formatIncome(state.incomeRange);
@@ -250,11 +253,11 @@
 
             let leadReason = "";
             if (leadTemp.includes('Hot')) {
-                leadReason = `Ranked Hot because this client is navigating the '${lifeStageText}' stage with ${state.dependentsCount} dependents and an income tier of ${incomeText}. Their explicit focus on '${objectiveText}' creates high financial vulnerability and immediate policy urgency.`;
+                leadReason = `Ranked Hot because this client presents high-priority exposure through ${state.dependentsCount === '3+' ? 'a large household of 3+ dependents' : 'mortgage payoff goals combined with a solid household income tier (' + incomeText + ')'}.`;
             } else if (leadTemp.includes('Warm')) {
-                leadReason = `Ranked Warm because they are positioned in the '${lifeStageText}' phase with ${state.dependentsCount} dependent(s) and a household income of ${incomeText}. Pairing '${objectiveText}' with a '${healthText}' health profile indicates solid mid-tier potential.`;
+                leadReason = `Ranked Warm due to moderate household requirements, featuring ${state.dependentsCount} dependent(s), a '${objectiveText}' goal, and an income level of ${incomeText}.`;
             } else {
-                leadReason = `Ranked Standard because they are starting out in the '${lifeStageText}' life stage with ${state.dependentsCount} dependents and an income level of ${incomeText}. Their primary focus is '${objectiveText}', representing a clean baseline advisory opportunity.`;
+                leadReason = `Ranked Standard because they are starting out with ${state.dependentsCount} dependents and an entry-level income of ${incomeText}, focusing on '${objectiveText}'.`;
             }
 
             const payload = {
@@ -271,17 +274,15 @@
                 leadReason: leadReason
             };
 
-            // Save locally for your CRM dashboard
             let existingLeads = JSON.parse(localStorage.getItem('dcfs_leads') || '[]');
             existingLeads.unshift(payload);
             localStorage.setItem('dcfs_leads', JSON.stringify(existingLeads));
 
-            // Hide wizard progress items
             document.getElementById('progress-container').style.display = 'none';
             document.getElementById('social-proof-banner').style.display = 'none';
             document.getElementById('nav-controls').style.display = 'none';
 
-            // CLIENT-FACING OVERVIEW
+            // CLIENT-FACING OVERVIEW WITH SUGGESTIVE FOCUS BRIEF RETURNED
             const card = document.getElementById('quiz-card');
             card.innerHTML = `
                 <div class="space-y-5 fade-in text-center sm:text-left">
@@ -289,6 +290,13 @@
                         <span class="text-xs uppercase tracking-widest text-corporate-accent font-bold block mb-1">Protection Plan Submitted</span>
                         <h2 class="text-2xl font-bold text-white">Thank you, ${state.clientName}!</h2>
                         <p class="text-slate-300 text-sm mt-1">Your checkup summary has been securely routed to Melanie Banteah.</p>
+                    </div>
+
+                    <div class="bg-slate-900/80 p-4 sm:p-5 rounded-2xl border border-slate-700/60 text-left space-y-3">
+                        <h3 class="text-xs uppercase tracking-wider text-slate-400 font-bold">Your Custom Focus Brief:</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed bg-slate-950/60 p-3.5 rounded-xl border border-slate-800">
+                            Based on your profile in the <strong>${lifeStageText.toLowerCase()}</strong> stage with <strong>${state.dependentsCount}</strong> dependent(s) and a focus on <strong>${objectiveText.toLowerCase()}</strong>, Melanie recommends evaluating tailored structures that match your household income tier of <strong>${incomeText}</strong>.
+                        </p>
                     </div>
 
                     <div class="bg-slate-900/80 p-4 sm:p-5 rounded-2xl border border-slate-700/60 text-left space-y-3">
