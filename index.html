@@ -151,7 +151,7 @@
                 id: 5,
                 title: "How is your overall health?",
                 subtitle: "This helps us see what kind of rates you might qualify for.",
-                proof: "Being honest here helps give you, a realistic picture of your options.",
+                proof: "Being honest here helps give you a realistic picture of your options.",
                 type: "options",
                 key: "healthSelfAssessment",
                 options: [
@@ -250,16 +250,11 @@
 
             let leadReason = "";
             if (leadTemp.includes('Hot')) {
-                let triggers = [];
-                if (state.dependentsCount === '3+') triggers.Item = triggers.push("a large household of 3+ dependents");
-                if (state.primaryObjective === 'mortgage_protection') triggers.push("an urgent goal to protect real estate and wipe out debts");
-                if (state.incomeRange === 'tier_3') triggers.push("a high household income tier");
-                
-                leadReason = `Ranked Hot because this client is navigating the '${lifeStageText}' stage with ${state.dependentsCount} dependents and focuses heavily on '${objectiveText}' at an income level of ${incomeText}. Their unique combination of financial exposure and immediate family reliance makes them a high-priority follow-up.`;
+                leadReason = `Ranked Hot because this client is navigating the '${lifeStageText}' stage with ${state.dependentsCount} dependents and an income tier of ${incomeText}. Their explicit focus on '${objectiveText}' creates high financial vulnerability and immediate policy urgency.`;
             } else if (leadTemp.includes('Warm')) {
-                leadReason = `Ranked Warm because they are in the '${lifeStageText}' stage with ${state.dependentsCount} dependent(s) and a household income of ${incomeText}. Their goal of '${objectiveText}' paired with a '${healthText}' health profile indicates solid potential for mid-tier policy structuring.`;
+                leadReason = `Ranked Warm because they are positioned in the '${lifeStageText}' phase with ${state.dependentsCount} dependent(s) and a household income of ${incomeText}. Pairing '${objectiveText}' with a '${healthText}' health profile indicates solid mid-tier potential.`;
             } else {
-                leadReason = `Ranked Standard because they are starting out in the '${lifeStageText}' stage with ${state.dependentsCount} dependents and an income of ${incomeText}. Focus is on '${objectiveText}', representing a foundational entry-level policy opportunity.`;
+                leadReason = `Ranked Standard because they are starting out in the '${lifeStageText}' life stage with ${state.dependentsCount} dependents and an income level of ${incomeText}. Their primary focus is '${objectiveText}', representing a clean baseline advisory opportunity.`;
             }
 
             const payload = {
